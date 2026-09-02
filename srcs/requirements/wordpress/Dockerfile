@@ -12,6 +12,8 @@ RUN curl -o /tmp/wp-cli.phar https://raw.githubusercontent.com/wp-cli/builds/gh-
     && chmod +x /tmp/wp-cli.phar \
     && mv /tmp/wp-cli.phar /usr/local/bin/wp
 
+COPY conf/www.conf /etc/php/8.2/fpm/pool.d/www.conf
+
 COPY tools/init.sh /usr/local/bin/
 
 RUN chmod +x /usr/local/bin/init.sh

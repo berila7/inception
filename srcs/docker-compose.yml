@@ -3,7 +3,7 @@ services:
     build:
       context: ./requirements/mariadb
     volumes:
-      - mariadb:/var/lib/mysql
+      - mariadb_data:/var/lib/mysql
     networks:
       - inception
     secrets:
@@ -13,17 +13,37 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
     restart: always
+  wordpress:
+    build:
+      context: ./requirements/wordpress
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - inception
+    secrets:
+      - db_password
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_HOST: ${MYSQL_HOST}
+    restart: always
 
 networks:
   inception:
 
 volumes:
   mariadb_data:
-  driver: local 
-  driver_opts: 
-    type: none
-    o: bind
-    device: /home/mberila/data/mariadb
+    driver: local 
+    driver_opts: 
+      type: none
+      o: bind
+      device: /home/mberila/data/mariadb
+  wordpress_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/mberila/data/wordpress
 
 secrets:
   db_password:
