@@ -22,6 +22,7 @@ services:
       - inception
     secrets:
       - db_password
+      - wp_
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
