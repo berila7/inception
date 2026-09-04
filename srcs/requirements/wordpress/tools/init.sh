@@ -4,6 +4,21 @@ set -e
 
 mkdir -p /var/www/html
 
+echo "Waiting for MariaDB..."
+
+DB_PASS=$(cat /run/secrets/db_password)
+
+until mariadb \
+    -h "$MYSQL_HOST" \
+    -u "$MYSQL_USER" \
+    -p"$DB_PASS" \
+    -e "SELECT 1;" >/dev/null 2>&1
+do
+    sleep 2
+done
+
+echo "MariaDB is ready."
+
 if [ ! -f "/var/www/html/index.php" ]; then
     echo "WordPress files not found. Downloading..."
 
@@ -15,8 +30,6 @@ fi
 
 if [ ! -f "/var/www/html/wp-config.php" ]; then
     echo "WordPress configuration not found. Creating..."
-
-    DB_PASS=$(cat /run/secrets/db_password)
 
     wp config create \
         --path=/var/www/html \
