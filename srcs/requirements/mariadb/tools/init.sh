@@ -18,9 +18,9 @@ GRANT ALL PRIVILEGES ON $MYSQL_DATABASE.* TO '$MYSQL_USER'@'%';
 ALTER USER 'root'@'localhost' IDENTIFIED BY '$DB_ROOT_PASS';
 FLUSH PRIVILEGES;
 EOF
-    mysqld --user=mysql --bootstrap < /tmp/init.sql
+    mariadbd --user=mysql --bootstrap < /tmp/init.sql
     rm -f /tmp/init.sql
     
 fi
 
-exec mysqld --user=mysql
+exec mariadbd --user=mysql
