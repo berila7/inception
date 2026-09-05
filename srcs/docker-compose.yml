@@ -47,6 +47,11 @@ services:
       - wordpress_data:/var/www/html
     networks:
       - inception
+    secrets:
+      - db_password
+      - wp_admin_password
+    environment:
+      DOMAIN_NAME: ${DOMAIN_NAME}
     depends_on:
       - wordpress
     ports:

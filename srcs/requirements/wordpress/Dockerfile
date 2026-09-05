@@ -19,4 +19,6 @@ COPY tools/init.sh /usr/local/bin/
 
 RUN chmod +x /usr/local/bin/init.sh
 
+EXPOSE 9000
+
 ENTRYPOINT ["/usr/local/bin/init.sh"]
