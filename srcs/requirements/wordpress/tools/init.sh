@@ -58,4 +58,19 @@ then
         --allow-root
 fi
 
+if ! wp user get "$WP_USER" \
+    --path=/var/www/html \
+    --allow-root >/dev/null 2>&1
+then
+    echo "Creating secondary WordPress user..."
+
+    WP_USER_PASS=$(cat /run/secrets/wp_user_password)
+
+    wp user create "$WP_USER" "$WP_USER_EMAIL" \
+        --role=subscriber \
+        --user_pass="$WP_USER_PASS" \
+        --path=/var/www/html \
+        --allow-root
+fi
+
 exec php-fpm8.2 -F
