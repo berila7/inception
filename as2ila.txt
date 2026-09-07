@@ -1,2 +1,0 @@
-1: all three are marked U, meaning they are currently in use by your containers
-2: what this for HTTP_HOST="$DOMAIN_NAME"
