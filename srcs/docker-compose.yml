@@ -44,6 +44,11 @@ services:
       WP_ADMIN_EMAIL: ${WP_ADMIN_EMAIL}
       WP_USER: ${WP_USER}
       WP_USER_EMAIL: ${WP_USER_EMAIL}
+    healthcheck:
+      test: ["CMD", "test", "-f", "/var/www/html/index.php"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
     restart: always
   nginx:
     image: nginx:1.0
@@ -56,7 +61,8 @@ services:
     environment:
       DOMAIN_NAME: ${DOMAIN_NAME}
     depends_on:
-      - wordpress
+      wordpress:
+        condition: service_healthy
     ports:
       - "443:443"
     restart: always
