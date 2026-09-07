@@ -40,7 +40,7 @@ if [ ! -f "/var/www/html/wp-config.php" ]; then
         --allow-root
 fi
 
-if ! HTTP_HOST="$DOMAIN_NAME" wp core is-installed \
+if ! wp core is-installed \
     --path=/var/www/html \
     --allow-root
 then
@@ -48,7 +48,7 @@ then
 
     WP_ADMIN_PASS=$(cat /run/secrets/wp_admin_password)
 
-    HTTP_HOST="$DOMAIN_NAME" wp core install \
+    wp core install \
         --path=/var/www/html \
         --url="https://$DOMAIN_NAME" \
         --title="$WP_TITLE" \

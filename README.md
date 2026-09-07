@@ -20,7 +20,7 @@ Each service runs in its own container. The containers communicate through a ded
 - **Docker Compose** is used to create and manage the infrastructure.
 - **Docker secrets** are used for passwords and other sensitive values.
 - A **`.env` file** is used for non-sensitive configuration.
-- **Bind-mounted volumes** keep WordPress and MariaDB data persistent on the host.
+- **volumes** keep WordPress and MariaDB data persistent on the host.
 - **HTTPS** is enabled in NGINX using TLS certificates.
 - The services communicate using Docker service names instead of hard-coded container IP addresses.
 
@@ -124,4 +124,4 @@ https://mberila.42.fr
 - WordPress documentation
 - WP-CLI documentation
 
-AI was used to help understand Docker concepts, troubleshoot configuration issues, review configuration files and scripts, and improve the README. All project components were tested and reviewed manually.
+AI was used to help understand Docker concepts, troubleshoot configuration issues, review configuration files and scripts. All project components were tested and reviewed manually.

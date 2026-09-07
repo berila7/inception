@@ -5,7 +5,7 @@ mkdir -p /run/mysqld
 chown mysql:mysql /run/mysqld
 
 if [ ! -d "/var/lib/mysql/mysql" ]; then
-    mariadb-install-db --user=mysql --datadir=/var/lib/mysql --skip-test-db > /dev/null
+    mariadb-install-db --user=mysql --datadir=/var/lib/mysql
     DB_PASS=$(cat /run/secrets/db_password)
     DB_ROOT_PASS=$(cat /run/secrets/db_root_password)
 

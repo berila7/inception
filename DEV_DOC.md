@@ -108,7 +108,7 @@ It defines:
 - Healthchecks.
 - Docker secrets.
 - Environment variables.
-- Persistent bind-mounted volumes.
+- Persistent volumes.
 - The custom Docker network.
 - The HTTPS port mapping.
 
@@ -136,7 +136,7 @@ The network allows internal service communication without exposing MariaDB or PH
 
 ## 6. Persistent Data
 
-Persistent data is stored on the host using bind mounts.
+Persistent data is stored on the host.
 
 **MariaDB data**
 
@@ -362,7 +362,7 @@ To verify persistence:
 
 4. Confirm that the WordPress users and website data are still present.
 
-The data is preserved because it is stored in host bind-mounted directories.
+The data is preserved because it is stored in the host.
 
 ## 14. Security Considerations
 
